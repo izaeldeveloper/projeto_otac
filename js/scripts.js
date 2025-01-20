@@ -13,10 +13,44 @@ $(function(){
             return true;
         }
     }
-
       
+    function validarCPF(cpf){
+        cpf = cpf.replace(/[^\d]+/g, '');
+            if (cpf.length !== 11 || /^\d{11}$/.test(cpf) && new Set(cpf).size === 1) {
+                return false;
+            }
+
+            let soma = 0;
+            let resto;
+
+            for (let i = 1; i <= 9; i++) {
+                soma += parseInt(cpf[i - 1]) * (11 - i);
+            }
+            resto = (soma * 10) % 11;
+            if (resto === 10 || resto === 11) {
+                resto = 0;
+            }
+            if (resto !== parseInt(cpf[9])) {
+                return false;
+            }
+
+            soma = 0;
+            for (let i = 1; i <= 10; i++) {
+                soma += parseInt(cpf[i - 1]) * (12 - i);
+            }
+            resto = (soma * 10) % 11;
+            if (resto === 10 || resto === 11) {
+                resto = 0;
+            }
+            if (resto !== parseInt(cpf[10])) {
+                return false;
+            }
+
+        return true;
+    }
 
     $('#maior18').click(function(){
+
         $('.voltarMenu').css('display','none');
         $('.verificaDadosMenor').css('display','none');
         $('.verificaDadosMaior').css('display','block');
@@ -60,7 +94,7 @@ $(function(){
                 <div class="quebra"></div>
             </div>
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://inscricao-otac.vercel.app/sucesso.html">
+                <input type="hidden" name="_next" value="http://127.0.0.1:5500/sucesso.html">
                 <input type="hidden" name="_cc" value="izael.social@tutamail.com">
                 <input type="hidden" name="_subject" value="O.T.A.C: Inscrição!">
                 <input type="hidden" name="_template" value="table">
@@ -78,6 +112,7 @@ $(function(){
 
     })
     $('#menor18').click(function(){
+
         $('.voltarMenu').css('display','none');
         $('.verificaDadosMenor').css('display','block');
         $('.verificaDadosMaior').css('display','none');
@@ -93,33 +128,33 @@ $(function(){
             <div id="form-de-menor">
                 <div class="w50">
                     <h3>Nome do Inscrito</h3>
-                    <input type="text" name="nome_pessoa" id="nome_pessoa" placeholder="Nome do Inscrito..." required>    
+                    <input type="text" name="nome_inscrito" id="nome_inscrito" placeholder="Nome do Inscrito...">    
                 </div>
                 <div class="w50">
                     <h3>Sobrenome do Inscrito</h3>
-                    <input type="text" name="sobrenome_pessoa" id="sobrenome_pessoa" placeholder="Sobrenome do Inscrito..." required>    
+                    <input type="text" name="sobrenome_inscrito" id="sobrenome_inscrito" placeholder="Sobrenome do Inscrito...">    
                 </div>
                 <div class="quebra"></div>
                 <div class="w50">
                         <h3>Nome do Responsável</h3>
-                        <input type="text" name="nome_responsavel" id="nome_responsavel" placeholder="Nome do Responsável..." required>      
+                        <input type="text" name="nome_responsavel" id="nome_responsavel" placeholder="Nome do Responsável...">      
                 </div>
                 <div class="w50">
                     <h3>Sobrenome do Responsável</h3>
-                    <input type="text" name="sobrenome_responsavel" id="sobrenome_responsavel" placeholder="Sobrenome do Responsável..." required>      
+                    <input type="text" name="sobrenome_responsavel" id="sobrenome_responsavel" placeholder="Sobrenome do Responsável...">      
                 </div>
                 <div class="w50">
                     <h3>CPF do Resp.</h3>
-                    <input type="text" name="cpf_responsavel" id="cpf_responsavel" placeholder="Ex: 999.999.999-99" required>    
+                    <input type="text" name="cpf_responsavel" id="cpf_responsavel" placeholder="Ex: 999.999.999-99">    
                 </div>
                 <div class="w50">
                     <h3>Telefone do Resp.</h3>
-                    <input type="text" name="telefone_responsavel" id="telefone_responsavel" placeholder="Ex: (21)99999-9999" required>
+                    <input type="text" name="telefone_responsavel" id="telefone_responsavel" placeholder="Ex: (21)99999-9999">
                 </div>    
                 <div class="quebra"></div>
             </div>
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://inscricao-otac.vercel.app/sucesso.html">
+                <input type="hidden" name="_next" value="http://127.0.0.1:5500/sucesso.html">
                 <input type="hidden" name="_cc" value="izael.social@tutamail.com">
                 <input type="hidden" name="_subject" value="O.T.A.C: Inscrição!">
                 <input type="hidden" name="_template" value="table">
@@ -138,60 +173,6 @@ $(function(){
     $('.verificaDadosMenor').click(function(e){
         var enviar = true;
 
-        var nomePessoa = String(window.document.getElementById('nome_pessoa').value);
-        if(campoVazio(nomePessoa)){
-            campoVazio(nomePessoa);
-            enviar = false;
-        }else{
-            if((nomePessoa[nomePessoa.length - 1]) === ' ' || nomePessoa[0] === ' '){
-                enviar = true;
-            }else if(nomePessoa.includes(' ')){
-                boxAlerta('Insira apenas seu primeiro nome.');
-                enviar = false;
-            }    
-        }
-
-        var sobrenomePessoa = String(window.document.getElementById('sobrenome_pessoa').value);
-        if(campoVazio(sobrenomePessoa)){
-            campoVazio(sobrenomePessoa);
-            enviar = false;
-        }else{
-            if((sobrenomePessoa[sobrenomePessoa.length - 1]) === ' ' || sobrenomePessoa[0] === ' '){
-                enviar = true;
-            }else if(sobrenomePessoa.includes(' ')){
-                boxAlerta('Insira apenas seu sobrenome ou último nome.');
-                enviar = false;
-            }    
-        }
-
-
-
-        var nomeResponsavel = String(window.document.getElementById('nome_responsavel').value);
-        if(campoVazio(nomeResponsavel)){
-            campoVazio(nomeResponsavel);
-            enviar = false;
-        }else{
-            if((nomeResponsavel[nomeResponsavel.length - 1]) === ' ' || nomeResponsavel[0] === ' '){
-                enviar = true;
-            }else if(nomeResponsavel.includes(' ')){
-                boxAlerta('Insira apenas seu primeiro nome.');
-                enviar = false;
-            }    
-        }
-
-        var sobrenomeResponsavel = String(window.document.getElementById('sobrenome_responsavel').value);
-        if(campoVazio(sobrenomeResponsavel)){
-            campoVazio(sobrenomeResponsavel);
-            enviar = false;
-        }else{
-            if((sobrenomeResponsavel[sobrenomeResponsavel.length - 1]) === ' ' || sobrenomeResponsavel[0] === ' '){
-                enviar = true;
-            }else if(sobrenomeResponsavel.includes(' ')){
-                boxAlerta('Insira apenas seu sobrenome ou último nome.');
-                enviar = false;
-            }    
-        }
-
         //Validação Número de Responsável
         var telefoneResponsavel = String(window.document.getElementById('telefone_responsavel').value);
         if(campoVazio(telefoneResponsavel)){
@@ -205,16 +186,67 @@ $(function(){
         }
 
         //Validação de CPF
-        var cpf = String(window.document.getElementById('cpf_responsavel').value);
-        if(campoVazio(cpf)){
-            campoVazio(cpf);
+        const cpf = window.document.getElementById('cpf_responsavel').value;
+        const resultadocpf = validarCPF(cpf);
+        if(!resultadocpf){
+            boxAlerta('Insira um CPF Válido.');
+            enviar = false;
+        }
+
+        //Validação Nome Responsável
+        var nomeResponsavel = String(window.document.getElementById('nome_responsavel').value);
+        if(campoVazio(nomeResponsavel)){
+            campoVazio(nomeResponsavel);
             enviar = false;
         }else{
-            if(cpf.length != 14){
-                boxAlerta('Insira um CPF válido.');
-                enviar = false;
-            }else{
+            if((nomeResponsavel[nomeResponsavel.length - 1]) === ' ' || nomeResponsavel[0] === ' '){
                 enviar = true;
+            }else if(nomeResponsavel.includes(' ')){
+                boxAlerta('Insira apenas seu primeiro nome.');
+                enviar = false;
+            }    
+        }
+
+        //Validação Sobrenome Responsável
+        var sobrenomeResponsavel = String(window.document.getElementById('sobrenome_responsavel').value);
+        if(campoVazio(sobrenomeResponsavel)){
+            campoVazio(sobrenomeResponsavel);
+            enviar = false;
+        }else{
+            if((sobrenomeResponsavel[sobrenomeResponsavel.length - 1]) === ' ' || sobrenomeResponsavel[0] === ' '){
+                enviar = true;
+            }else if(sobrenomeResponsavel.includes(' ')){
+                boxAlerta('Insira apenas seu sobrenome ou último nome.');
+                enviar = false;
+            }    
+        }
+
+        //Validação Nome Inscrito
+        var nomeInscrito = String(window.document.getElementById('nome_inscrito').value);
+        if(campoVazio(nomeInscrito)){
+            campoVazio(nomeInscrito);
+            enviar = false;
+        }else{
+            if((nomeInscrito[nomeInscrito.length - 1]) === ' ' || nomeInscrito[0] === ' '){
+                enviar = true;
+            }else if(nomeInscrito.includes(' ')){
+                boxAlerta('Insira apenas seu primeiro nome.');
+                enviar = false;
+            }    
+        }
+
+        //Validação SobreNome Inscrito
+        
+        var sobrenomeInscrito = String(window.document.getElementById('sobrenome_inscrito').value);
+        if(campoVazio(sobrenomeInscrito)){
+            campoVazio(sobrenomeInscrito);
+            enviar = false;
+        }else{
+            if((sobrenomeInscrito[sobrenomeInscrito.length - 1]) === ' ' || sobrenomeInscrito[0] === ' '){
+                enviar = true;
+            }else if(sobrenomeInscrito.includes(' ')){
+                boxAlerta('Insira apenas seu sobrenome ou último nome.');
+                enviar = false;
             }    
         }
 
@@ -222,7 +254,7 @@ $(function(){
             $('.verificaDadosMenor').css('display','none');
             $('.voltarMenu').css('display','block');
             $('.travaMenu').css('display','block');
-            $('.alerta').remove();
+            $('.alerta').css('display','none');
             $('.forms form .buttonEnviar').html(`
                 <h4>DADOS CONFEREM!</h4>
                 <input type="submit" value="REALIZAR INSCRIÇÃO!">`);
@@ -242,39 +274,6 @@ $(function(){
 
     $('.verificaDadosMaior').click(function(e){
         var enviar = true;
-        //Validação Nome
-        var nomePessoa = String(window.document.getElementById('nome_pessoa').value);
-        if(campoVazio(nomePessoa)){
-            campoVazio(nomePessoa);
-            enviar = false;
-        }else{
-            if((nomePessoa[nomePessoa.length - 1]) === ' ' || nomePessoa[0] === ' '){
-                enviar = true;
-            }else if(nomePessoa.includes(' ')){
-                boxAlerta('Insira apenas seu primeiro nome.');
-                enviar = false;
-            }    
-        }
-        
-
-        //Validação Sobrenome
-        var sobrenomePessoa = String(window.document.getElementById('sobrenome_pessoa').value);
-        if(campoVazio(sobrenomePessoa)){
-            campoVazio(sobrenomePessoa);
-            enviar = false;
-        }else{
-            if((sobrenomePessoa[sobrenomePessoa.length - 1]) === ' ' || sobrenomePessoa[0] === ' '){
-                enviar = true;
-            }else if(sobrenomePessoa.includes(' ')){
-                boxAlerta('Insira apenas seu sobrenome ou último nome.');
-                enviar = false;
-            }    
-        }
-
-        /*
-        
-        */
-        
         
         //Validação de E-mail
         const email = String(window.document.getElementById('email_pessoa').value);
@@ -290,7 +289,34 @@ $(function(){
             enviar = false;
         };
 
+        //Validação Nome
+        const nomePessoa = String(window.document.getElementById('nome_pessoa').value);
+        if(campoVazio(nomePessoa)){
+            campoVazio(nomePessoa);
+            enviar = false;
+        }else{
+            if((nomePessoa[nomePessoa.length - 1]) == ' ' || nomePessoa[0] == ' '){
+                enviar = true;
+            }else if(nomePessoa.includes(' ')){
+                boxAlerta('Insira apenas seu primeiro nome.');
+                enviar = false;
+            }    
+        }
 
+        //Validação Sobrenome
+        const sobrenomePessoa = String(window.document.getElementById('sobrenome_pessoa').value);
+        if(campoVazio(sobrenomePessoa)){
+            campoVazio(sobrenomePessoa);
+            enviar = false;
+        }else{
+            if((sobrenomePessoa[sobrenomePessoa.length - 1]) === ' ' || sobrenomePessoa[0] === ' '){
+                enviar = true;
+            }else if(sobrenomePessoa.includes(' ')){
+                boxAlerta('Insira apenas seu sobrenome ou último nome.');
+                enviar = false;
+            }    
+        }
+        
         //Validação de Idade
         
         const getData = new Date();
@@ -311,14 +337,13 @@ $(function(){
             }
         }
         
-
         //Validação de Telefone
         
         var telefone = window.document.getElementById('telefone_pessoa').value;
         var telefoneEmergencial1 = window.document.getElementById('telefone_emergencial_pessoa').value;
         var telefoneEmergencial2 = window.document.getElementById('telefone_emergencial_pessoa2').value;
         //var telefoneResponsavel = window.document.getElementById('telefone_responsavel').value;
-        if(campoVazio(telefone) || campoVazio(telefoneEmergencial1) /*|| campoVazio(telefoneResponsavel)*/){
+        if(campoVazio(telefone) || campoVazio(telefoneEmergencial1)){
             campoVazio(telefone);
             enviar = false;
         }else{
@@ -329,16 +354,13 @@ $(function(){
                 enviar = enviar;
             }
         }
-        
-        /*
-        
-        */
 
+        
         if(enviar == true){
             $('.verificaDadosMaior').css('display','none');
             $('.voltarMenu').css('display','block');
             $('.travaMenu').css('display','block');
-            $('.alerta').remove();
+            $('.alerta').css('display','none');
             $('.forms form .buttonEnviar').html(`
                 <h4>DADOS CONFEREM!</h4>
                 <input type="submit" value="REALIZAR INSCRIÇÃO!">
