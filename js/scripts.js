@@ -51,11 +51,11 @@ $(function(){
                 <h3>Telefones Emergenciais</h3>
                 <div class="w50">
                     <h4>Telefone 1</h4>
-                    <input type="text" name="telefone_emergencial_pessoa" id="telefone_emergencial_pessoa1" placeholder="Ex: (21)99999-9999">
+                    <input type="text" name="telefone_emergencial_pessoa" id="telefone_emergencial_pessoa" placeholder="Ex: (21)99999-9999">
                 </div>
                 <div class="w50">
                     <h4>Telefone 2 (Opcional)</h4>
-                    <input type="text" name="telefone_emergencial_pessoa1" id="telefone_emergencial_pessoa2" placeholder="Ex: (21)99999-9999">
+                    <input type="text" name="telefone_emergencial_pessoa2" id="telefone_emergencial_pessoa2" placeholder="Ex: (21)99999-9999">
                 </div>
                 <div class="quebra"></div>
             </div>
