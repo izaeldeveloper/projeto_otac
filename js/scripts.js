@@ -70,7 +70,7 @@ $(function(){
             </div>
             `
         );
-        $('[name=telefone_emergencial_pessoa1]').mask('(99)99999-9999');
+        $('[name=telefone_emergencial_pessoa]').mask('(99)99999-9999');
         $('[name=telefone_emergencial_pessoa2]').mask('(99)99999-9999');
         $('[name=telefone_pessoa]').mask('(99)99999-9999');
         $('#form-de-menor').remove();
