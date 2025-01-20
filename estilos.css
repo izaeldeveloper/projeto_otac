@@ -1,0 +1,289 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Baskervville';
+}
+
+html,body{
+    background-color: black;
+    height: 100%;
+    background-image: url(images/banner.JPG);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.alerta{
+    background-color: rgb(196, 134, 134);
+    border: 1px solid red;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+header{
+    width: 100%;
+    text-align: center;
+}
+
+header img{
+    width: 200px;
+}
+
+header h1{
+    color: white;
+    font-size: 32px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header button{
+    height: 40px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    border: 0;
+    transition: 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+header button:hover{
+    transform: scale(1.05);
+    background-color: rgba(46, 46, 46, 0.4);
+    color: white;
+}
+
+.selected{
+    transform: scale(1.05);
+    background-color: red;
+    color: white;
+}
+
+
+
+.quebra{
+    width: 100%;
+    background-color: white;
+    height: 1px;
+    margin: 25px 0;
+}
+
+.forms{
+    width: 100%;
+    min-height: 650px;
+    position: relative;
+}
+
+form{
+    background-color: rgba(46, 46, 46, 0.4);
+    padding: 30px;
+    width: 700px;
+    margin: 30px auto;
+    position: relative;
+}
+
+form h3{
+    color: white;
+    text-transform: uppercase;
+    margin-top: 20px;
+    font-weight: normal;
+}
+
+form h4{
+    color: white;
+    text-transform: uppercase;
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+form input[type=text],form input[type=email]{
+    width: 100%;
+    height: 40px;
+    outline: 0;
+    padding-left: 10px;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+form input[type=submit]{
+    margin: 0 auto;
+    color: black;
+    background-color: white;
+    padding: 8px 15px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.3s;
+    height: 40px;
+    position: relative;
+    z-index: 999;
+}
+
+form input[type=date]{
+    height: 40px;
+    width: 200px;
+    text-align: center;
+    margin-top: 5px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.w50{
+    width: 48%;
+    display: inline-block;
+    margin: 0 0.8%;
+}
+
+form #nascimento_pessoa, form #telefone_pessoa, form #telefone_emergencial_pessoa1,form #telefone_emergencial_pessoa2,form #cpf_responsavel{
+    max-width: 200px;
+}
+
+form input[type=text]:focus,form input[type=email]:focus,form input[type=submit]:hover{
+    transform: scale(1.05);
+}
+
+form input[type=submit]:hover{
+    background-color: black;
+    color: white;
+}
+
+footer{
+    background-color: rgba(46, 46, 46,0.4);
+    padding: 40px 0;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+footer p{
+    margin: 0 120px;
+    display: inline-block;
+}
+
+.box-sucesso{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(46, 46, 46, 0.4);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.box-sucesso img{
+    width: 400px;
+}
+
+.box-sucesso p{
+    text-align: justify;
+    margin-top: 30px;
+}
+
+.box-sucesso h2{
+    margin-top: 30px;
+}
+
+.box-sucesso h2 b{
+    color: red;
+}
+
+.box-sucesso a{
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    padding: 8px 15px;
+    transition: 0.3s;
+    position: relative;
+    top: 10px;
+    right: -48%;
+}
+
+.box-sucesso a:hover{
+    color: white;
+    transform: scale(1.05);
+    background-color: black;
+}
+
+.verificaDadosMaior{
+    padding: 8px 15px;
+    cursor: pointer;
+    height: 40px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border: 0;
+    margin: 20px auto;
+}
+
+.verificaDadosMenor{
+    padding: 8px 15px;
+    cursor: pointer;
+    height: 40px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border: 0;
+    margin: 20px auto;
+}  
+
+.verificaDadosMenor:hover,.verificaDadosMaior:hover{
+    background-color: green;
+    color: white;
+    transform: scale(1.05);
+}
+
+.buttonEnviar h4{
+    background-color: greenyellow;
+    border: 1px solid green;
+    padding: 8px 15px;
+    height: 40px;
+    color: black;
+    text-align: center;
+    margin-bottom: 15px;
+    z-index: 999;
+    position: relative;
+}
+
+.voltarMenu{
+    padding: 8px 15px;
+    cursor: pointer;
+    height: 40px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border: 0;
+    margin: 20px auto;
+}
+
+.voltarMenu:hover{
+    background-color: green;
+    color: white;
+    transform: scale(1.05);
+}
+
+.travaMenu{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-color: rgba(44, 42, 42,0.5);
+}
+
+@media screen and (max-width: 768px){
+    .w50{
+        width: 100%;
+        margin: 0;
+    }
+
+    form{
+        width: 100%;
+    }
+
+    footer p{
+        width: 100%;
+        margin: 0;
+    }
+}
