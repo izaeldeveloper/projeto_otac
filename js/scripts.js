@@ -94,7 +94,7 @@ $(function(){
                 <div class="quebra"></div>
             </div>
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="http://127.0.0.1:5500/sucesso.html">
+                <input type="hidden" name="_next" value="https://inscricao-otac.vercel.app/sucesso.html">
                 <input type="hidden" name="_cc" value="izael.social@tutamail.com">
                 <input type="hidden" name="_subject" value="O.T.A.C: Inscrição!">
                 <input type="hidden" name="_template" value="table">
@@ -154,7 +154,7 @@ $(function(){
                 <div class="quebra"></div>
             </div>
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="http://127.0.0.1:5500/sucesso.html">
+                <input type="hidden" name="_next" value="http://https://inscricao-otac.vercel.app/sucesso.html">
                 <input type="hidden" name="_cc" value="izael.social@tutamail.com">
                 <input type="hidden" name="_subject" value="O.T.A.C: Inscrição!">
                 <input type="hidden" name="_template" value="table">
